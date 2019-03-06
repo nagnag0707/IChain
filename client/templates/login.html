@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>Login to IChain</h1>
+    <p>{{ name }} </p>
+    <form action="login" method="post">
+        <div>
+            Accept_id <input type="password" name="accept_id">
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>IChain DashBoard</h1>
+    <p>---------------------------------------------------------------------</p>
+    <h3>Accept_id: {{ accept_id }}</h3>
+    <p>こんにちは！ {{ name }} さん！ <br>DashBorad上で身分証明/トランザクション生成&マイニングが可能です。</p>
+    <p>---------------------------------------------------------------------</p>
+    
+    <h3>身分証明</h3>
+    <p>証明したい先のIPアドレスとポート番号、ブロックチェーン上に存在するデータを入力して下さい。</p>
+    <form action="Identification" method="post">
+        <div>
+            宛先IP <input type="textfield" name="ip">
+        </div>
+        <div>
+           	ポート <input type="textfield" name="port">
+        </div>
+        <div>
+           	データ <input type="textfield" name="data">
+        </div>        
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+    
+    <p>---------------------------------------------------------------------</p>
+    
+    <h3>トランザクション生成/マイニング</h3>
+    <p>トランザクションを生成しブロックチェーンネットワークに伝播させます。<br>証明するユーザーのデータ、公開鍵を入力して下さい。
+    ブロックチェーンの仕様上データの訂正/削除はできません。</p>
+    <form action="Add_transaction" method="post">
+        <div>
+            証明するユーザーの公開鍵 <input type="textfield" name="recipient">
+        </div>
+        <div>
+           	データ <input type="textfield" name="signature">
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>    
+    
+{% endblock %}
