@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+{% block content %}
+    
+    <div>
+       	<textarea rows="10" cols="150" name="signature" readonly>{{ message }}</textarea>
+    </div>
+    
+    <p>--------------------------------------------------------</p>
+    <form action="dashboard" method="get">
+        <div>
+            <input type="submit" value = "return DashBoard">
+        </div>
+    </form>
+{% endblock %}

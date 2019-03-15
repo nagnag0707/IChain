@@ -1,0 +1,67 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h1>IChain DashBoard</h1>
+    <p>---------------------------------------------------------------------</p>
+    <h3>Accept_id: {{ accept_id }}</h3>
+    <p>こんにちは！ {{ name }} さん！ <br>DashBorad上で身分証明/トランザクション生成&マイニングが可能です。</p>
+    <p>---------------------------------------------------------------------</p>
+    
+    <h3>||---  IChain Identification Form   ---||</h3>
+    <p>身分証明フォーム</p>
+    <p>証明先の機関のIPアドレス<br>
+    ポート番号とあなたの身分データを入力して下さい。<br>
+    
+    </p>
+    <form action="Identification" method="post">
+        <p>証明先IPアドレス情報</p>
+        <div>
+            <input type="textfield" name="ip">
+        </div>
+        <p>証明先IPポート情報</p>
+        <div>
+            <input type="textfield" name="port">
+        </div>
+        <p>証明するデータ</p>
+        <div>
+           	<textarea rows="10" cols="60" name="data">example:170-0013 東京都豊島区東池袋3丁目3-1 電子　太郎</textarea>
+        </div>        
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+    
+    <p>---------------------------------------------------------------------</p>
+    
+    <h3>トランザクション生成/マイニング</h3>
+    <p>トランザクションを生成しブロックチェーンネットワークに伝播させます。<br>証明するユーザーのデータ、公開鍵を入力して下さい。
+    ブロックチェーンの仕様上データの訂正/削除はできません。</p>
+    <form action="Add_transaction" method="post">
+        <p>証明するユーザーの公開鍵 </p>
+        <div>
+            <input type="textarea" name="recipient">
+        </div>
+        <p>データ</p>
+        <div>
+           	<textarea rows="10" cols="60" name="signature">example:170-0013 東京都豊島区東池袋3丁目3-1 電子　太郎</textarea>
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+    
+    <h1>Console</h1>
+    <textarea cols="150" rows="30" id = "text-field" readonly></textarea>
+    <script type="text/javascript">
+        
+        var ws = new WebSocket("ws://3.17.156.77:8000/pipe");
+
+        ws.addEventListener ('message' ,function(e) {
+          document.getElementById("text-field").innerHTML = e.data;
+        }
+        )
+    </script>
+        
+
+
+{% endblock %}
+
